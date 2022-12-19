@@ -12,6 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// make enum for routes
 app.use('/user', userRouter);
 app.get('/', (req, res) => {
   res.send('hello world');

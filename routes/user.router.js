@@ -7,6 +7,10 @@ const checkDuplicateUser = require('../middlewares/checkDuplicateUser');
 const { REGEX } = require('../constants/global');
 const controller = require('../controllers/user.controller');
 
+// enum for routes
+// localisation for server and client
+// react-localisation
+// Add localisation in NFR for PRD
 userRouter.post(
   '/signup',
   [
@@ -30,5 +34,7 @@ userRouter.post(
   ],
   controller.signIn
 );
+
+userRouter.get('/confirm/:confirmationCode', controller.verifyUser);
 
 module.exports = userRouter;
