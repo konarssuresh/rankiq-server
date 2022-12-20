@@ -65,12 +65,6 @@ const signIn = async (req, res, next) => {
       });
     }
 
-    if (user.status !== 'Active') {
-      return res.status(401).send({
-        message: 'Pending Account. Please Verify Your Email!',
-      });
-    }
-
     const accessToken = await JWT.sign(
       { email: user.email, status: user.status },
       process.env.ACCESS_TOKEN_SECRET,
