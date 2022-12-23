@@ -1,7 +1,6 @@
-'use strict';
-
-const JWT = require('jsonwebtoken');
-require('dotenv').config();
+import JWT from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const verifyToken = async (req, res, next) => {
   let token = req.headers['x-access-token'];
@@ -19,4 +18,4 @@ const verifyToken = async (req, res, next) => {
   });
 };
 
-module.exports = { verifyToken };
+export { verifyToken };

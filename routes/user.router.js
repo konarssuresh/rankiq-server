@@ -1,11 +1,10 @@
-'use strict';
+import express from 'express';
+import { body, check } from 'express-validator';
+import checkDuplicateUser from '../middlewares/checkDuplicateUser';
+import { REGEX } from '../constants/global';
+import { signUp, signIn, verifyUser } from '../controllers/user.controller';
 
-const express = require('express');
-const { body, check } = require('express-validator');
 const userRouter = express.Router();
-const checkDuplicateUser = require('../middlewares/checkDuplicateUser');
-const { REGEX } = require('../constants/global');
-const controller = require('../controllers/user.controller');
 
 // enum for routes
 // localisation for server and client
@@ -23,7 +22,7 @@ userRouter.post(
       ),
     checkDuplicateUser,
   ],
-  controller.signUp
+  signUp
 );
 
 userRouter.post(
@@ -32,9 +31,9 @@ userRouter.post(
     body('email').isEmail().withMessage('Enter valid email'),
     body('password').not().isEmpty().withMessage('firstName is required'),
   ],
-  controller.signIn
+  signIn
 );
 
-userRouter.get('/confirm/:confirmationCode', controller.verifyUser);
+userRouter.get('/confirm/:confirmationCode', verifyUser);
 
-module.exports = userRouter;
+export default userRouter;

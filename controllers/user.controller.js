@@ -1,13 +1,13 @@
-'use strict';
+import { validationResult } from 'express-validator';
+import JWT from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import dbUtils from '../utils/mongoUtils';
+import nodeMailer from '../utils/emailUtils';
+import cryptoUtils from '../utils/cryptoUtils';
 
-const { validationResult } = require('express-validator');
-const JWT = require('jsonwebtoken');
-require('dotenv').config();
-const { getDb } = require('../utils/mongoUtils');
-const nodeMailer = require('../utils/emailUtils');
-const cryptoUtils = require('../utils/cryptoUtils');
-
-const signUp = async (req, res, next) => {
+const { getDb } = dbUtils;
+dotenv.config();
+export const signUp = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -41,7 +41,7 @@ const signUp = async (req, res, next) => {
   }
 };
 
-const signIn = async (req, res, next) => {
+export const signIn = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -82,7 +82,7 @@ const signIn = async (req, res, next) => {
   }
 };
 
-const verifyUser = async (req, res, next) => {
+export const verifyUser = async (req, res, next) => {
   try {
     const db = getDb();
     const usersCollection = db.collection('users');
@@ -118,5 +118,3 @@ const verifyUser = async (req, res, next) => {
     next();
   }
 };
-
-module.exports = { signUp, signIn, verifyUser };

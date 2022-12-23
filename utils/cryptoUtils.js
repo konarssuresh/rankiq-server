@@ -1,7 +1,7 @@
-'use strict';
+import CryptoJS from 'crypto-js';
+import dotenv from 'dotenv';
 
-const CryptoJS = require('crypto-js');
-require('dotenv').config();
+dotenv.config();
 
 const cryptoKey = process.env.CRYPTO;
 
@@ -31,4 +31,4 @@ const decrypt = (data) => {
   }
 };
 
-module.exports = { encrypt, decrypt };
+export default { encrypt, decrypt };

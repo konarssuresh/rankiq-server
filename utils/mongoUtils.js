@@ -1,11 +1,11 @@
-'use strict';
+import Mongodb from 'mongodb';
+import dotenv from 'dotenv';
 
-const MongoClient = require('mongodb').MongoClient;
-require('dotenv').config();
-
+const MongoClient = Mongodb.MongoClient;
+dotenv.config();
 let db;
 
-module.exports = {
+const dbUtils = {
   connectToServer: (callback) => {
     MongoClient.connect(
       process.env.MONGODB,
@@ -21,3 +21,5 @@ module.exports = {
     return db;
   },
 };
+
+export default dbUtils;

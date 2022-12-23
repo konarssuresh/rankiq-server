@@ -1,13 +1,12 @@
-'use strict';
+import mongoUtil from './utils/mongoUtils.js';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import express from 'express';
+import userRouter from './routes/user.router';
+import contentRouter from './routes/content.routes';
 
-const mongoUtil = require('./utils/mongoUtils.js');
-const dotenv = require('dotenv');
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 3000;
-const cors = require('cors');
-const express = require('express');
-const userRouter = require('./routes/user.router');
-const contentRouter = require('./routes/content.routes');
 const app = express();
 
 app.use(cors());

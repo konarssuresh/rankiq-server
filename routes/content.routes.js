@@ -1,9 +1,8 @@
-'use strict';
+import express from 'express';
+import { getContent } from '../controllers/content.controller';
 
-const express = require('express');
 const contentRouter = express.Router();
-const controller = require('../controllers/content.controller');
 
-contentRouter.get('/getContent', controller.getContent);
+contentRouter.get('/getContent', getContent);
 
-module.exports = contentRouter;
+export default contentRouter;

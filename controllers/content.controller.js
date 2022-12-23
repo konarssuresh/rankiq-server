@@ -1,8 +1,6 @@
-'use strict';
+import fetch from 'node-fetch';
 
-const fetch = require('node-fetch');
-
-const getContent = async (req, res, next) => {
+export const getContent = async (req, res, next) => {
   try {
     const url = req.query.requestUrl;
     if (!url) {
@@ -18,5 +16,3 @@ const getContent = async (req, res, next) => {
     next();
   }
 };
-
-module.exports = { getContent };
