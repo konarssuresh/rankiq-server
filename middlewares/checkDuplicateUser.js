@@ -1,7 +1,9 @@
-'use strict';
+import dbUtils from '../utils/mongoUtils';
+import _lodash from 'lodash';
 
-const { getDb } = require('../utils/mongoUtils.js');
-const { isEmpty } = require('lodash');
+const { isEmpty } = _lodash;
+const { getDb } = dbUtils;
+
 const checkDuplicateUser = async (req, res, next) => {
   const { email = '' } = req.body;
   const db = getDb();
@@ -18,4 +20,4 @@ const checkDuplicateUser = async (req, res, next) => {
   next();
 };
 
-module.exports = checkDuplicateUser;
+export default checkDuplicateUser;

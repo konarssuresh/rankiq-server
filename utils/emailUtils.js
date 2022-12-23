@@ -1,7 +1,6 @@
-'use strict';
-
-const nodemailer = require('nodemailer');
-require('dotenv').config();
+import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const transport = nodemailer.createTransport({
   service: 'Gmail',
@@ -28,4 +27,4 @@ const sendConfirmationEmail = async (name, email, confirmationCode) => {
   }
 };
 
-module.exports = { sendConfirmationEmail };
+export default { sendConfirmationEmail };
